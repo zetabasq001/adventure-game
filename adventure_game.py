@@ -22,6 +22,25 @@ def intro():
         print_pause(message)
 
 
+def house():
+    pass
+
+
+def cave():
+    pass
+
+
+def valid_response(number):
+    if number == '1':
+        house()
+    elif number == '2':
+        cave()
+    else:
+        print_pause("(Please enter 1 or 2.)")
+        print_pause("What would you like to do?")
+        valid_response(input())
+
+
 def enter_query():
     queries = ["Enter 1 to knock on the door of the house.",
     "Enter 2 to peer into the cave.",
@@ -31,8 +50,9 @@ def enter_query():
     number = ''
     for query in queries:
         print_pause(query)
-    number = input()
+
+    valid_response(input())
 
 
-
+enter_query()
 
