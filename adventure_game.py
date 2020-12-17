@@ -1,9 +1,13 @@
 import time
 import random
 
-def print_pause(message):
-    print(message)
-    time.sleep(2)
+def print_pause(messages):
+    if len(messages) == 0:
+        return
+    else:
+        print(messages[0])
+        time.sleep(2)
+    print_pause(messages[1:])
 
 
 def intro():
@@ -18,8 +22,7 @@ def intro():
     "To your right is a dark cave.",
     "In your hand you hold your trusty (but not very effective) dagger."]
 
-    for message in messages:
-        print_pause(message)
+    print_pause(messages)
 
 
 def house():
@@ -47,12 +50,11 @@ def enter_query():
     "What would you like to do?",
     "(Please enter 1 or 2.)"]
 
-    number = ''
-    for query in queries:
-        print_pause(query)
+    print_pause(queries)
 
     valid_response(input())
 
 
 enter_query()
+
 
