@@ -24,11 +24,25 @@ def intro():
 
     print_pause(messages)
     sword = False
-    enter_query(sword)
+    enter_query(sword, villain)
 
 
-def house():
-    pass
+def house(sword, villain):
+
+    messages = ["You approach the door of the house.",
+                "You are about to knock when the door opens"
+                f"and out steps a {villain}.",
+                f"Eep! This is the {villain}'s house!",
+                f"The {villain} attacks you!"]
+    print_pause(messages)
+
+    if not sword:
+        messages = ["You feel a bit under-prepared for this,",
+                "what with only having a tiny dagger."]
+        print_pause(messages)
+
+    print_pause(["Would you like to (1) fight or (2) run away?"])
+    valid_response(input() + '2', sword, villain)
 
 
 def cave(sword):
@@ -60,18 +74,22 @@ def fight():
     pass
 
 
-def valid_response(number, sword):
+def valid_response(number, sword, villain):
     if number == '1':
-        house()
+        house(sword, villain)
     elif number == '2':
         cave(sword)
+    elif number == '12':
+        fight(sword)
+    elif number == '22':
+        field()
     else:
         print_pause(["(Please enter 1 or 2.)"])
         print_pause(["What would you like to do?"])
-        valid_response(input(), sword)
+        valid_response(input(), sword, villain)
 
 
-def enter_query(sword):
+def enter_query(sword, villain):
     queries = ["Enter 1 to knock on the door of the house.",
     "Enter 2 to peer into the cave.",
     "What would you like to do?",
@@ -79,7 +97,7 @@ def enter_query(sword):
 
     print_pause(queries)
 
-    valid_response(input(), sword)
+    valid_response(input(), sword, villain)
 
 
 intro()
