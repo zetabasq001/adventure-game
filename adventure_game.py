@@ -2,6 +2,7 @@ import time
 import random
 
 def print_pause(messages):
+
     if len(messages) == 0:
         return
     else:
@@ -11,6 +12,7 @@ def print_pause(messages):
 
 
 def intro():
+
     villains = ["deadly dragon", "wicked witch", "sinister sorcerer"]
     villain = random.choice(villains)
 
@@ -46,6 +48,7 @@ def house(sword, villain):
 
 
 def cave(sword):
+    
     if sword:
         messages = ["You peer cautiously into the cave.",
                     "You've been here before,",
@@ -63,11 +66,16 @@ def cave(sword):
         sword = True
 
     print_pause(messages)
-    enter_query(sword)
+    enter_query(sword, villain)
 
 
-def field():
-    pass
+def field(sword, villain):
+
+    messages = ["You run back into the field.",
+                "Luckily, you don't seem to have been followed."]
+
+    print_pause(messages)
+    enter_query(sword, villain)
 
 
 def fight():
@@ -78,11 +86,11 @@ def valid_response(number, sword, villain):
     if number == '1':
         house(sword, villain)
     elif number == '2':
-        cave(sword)
+        cave(sword, villain)
     elif number == '12':
-        fight(sword)
+        fight(sword, villain)
     elif number == '22':
-        field()
+        field(sword, villain)
     else:
         print_pause(["(Please enter 1 or 2.)"])
         print_pause(["What would you like to do?"])
