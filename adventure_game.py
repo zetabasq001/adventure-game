@@ -6,7 +6,7 @@ def print_pause(messages):
         return
     else:
         print(messages[0])
-        time.sleep(2)
+        #time.sleep(1)
     print_pause(messages[1:])
 
 
@@ -23,28 +23,55 @@ def intro():
     "In your hand you hold your trusty (but not very effective) dagger."]
 
     print_pause(messages)
+    sword = False
+    enter_query(sword)
 
 
 def house():
     pass
 
 
-def cave():
+def cave(sword):
+    if sword:
+        messages = ["You peer cautiously into the cave.",
+                    "You've been here before,",
+                    "and gotten all the good stuff.",
+                    "It's just an empty cave now.",
+                    "You walk back out to the field."]    
+    else:
+        messages = ["You peer cautiously into the cave.",
+                    "It turns out to be only a very small cave.",
+                    "Your eye catches a glint of metal behind a rock.",
+                    "You have found the magical Sword of Ogoroth!",
+                    "You discard your silly old dagger and take the sword with you.",
+                    "You walk back out to the field."]
+
+        sword = True
+
+    print_pause(messages)
+    enter_query(sword)
+
+
+def field():
     pass
 
 
-def valid_response(number):
+def fight():
+    pass
+
+
+def valid_response(number, sword):
     if number == '1':
         house()
     elif number == '2':
-        cave()
+        cave(sword)
     else:
-        print_pause("(Please enter 1 or 2.)")
-        print_pause("What would you like to do?")
-        valid_response(input())
+        print_pause(["(Please enter 1 or 2.)"])
+        print_pause(["What would you like to do?"])
+        valid_response(input(), sword)
 
 
-def enter_query():
+def enter_query(sword):
     queries = ["Enter 1 to knock on the door of the house.",
     "Enter 2 to peer into the cave.",
     "What would you like to do?",
@@ -52,9 +79,9 @@ def enter_query():
 
     print_pause(queries)
 
-    valid_response(input())
+    valid_response(input(), sword)
 
 
-enter_query()
+intro()
 
 
