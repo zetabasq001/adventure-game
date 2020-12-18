@@ -28,6 +28,8 @@ def intro():
     sword = False
     enter_query(sword, villain)
 
+def ending():
+    pass
 
 def house(sword, villain):
 
@@ -47,8 +49,8 @@ def house(sword, villain):
     valid_response(input() + '2', sword, villain)
 
 
-def cave(sword):
-    
+def cave(sword, villain):
+
     if sword:
         messages = ["You peer cautiously into the cave.",
                     "You've been here before,",
@@ -60,7 +62,8 @@ def cave(sword):
                     "It turns out to be only a very small cave.",
                     "Your eye catches a glint of metal behind a rock.",
                     "You have found the magical Sword of Ogoroth!",
-                    "You discard your silly old dagger and take the sword with you.",
+                    "You discard your silly old dagger",
+                    "and take the sword with you.",
                     "You walk back out to the field."]
 
         sword = True
@@ -78,8 +81,23 @@ def field(sword, villain):
     enter_query(sword, villain)
 
 
-def fight():
-    pass
+def fight(sword, villain):
+
+    if not sword:
+        messages = ["You do your best...",
+                    f"but your dagger is no match for the {villain}.",
+                    "You have been defeated!"]
+        print_pause(messages)   
+    else:
+        messages = [f"As the {villain} moves to attack, you unsheath your new sword.",
+                    "The Sword of Ogoroth shines brightly in your hand",
+                    "as you brace yourself for the attack.",
+                    f"But the {villain} takes one look at your shiny new toy and runs away!",
+                    f"You have rid the town of the {villain}.",
+                    "You are victorious!"]
+        print_pause(messages)
+
+    ending()
 
 
 def valid_response(number, sword, villain):
@@ -98,7 +116,7 @@ def valid_response(number, sword, villain):
 
 
 def enter_query(sword, villain):
-    queries = ["Enter 1 to knock on the door of the house.",
+    queries = ["\nEnter 1 to knock on the door of the house.",
     "Enter 2 to peer into the cave.",
     "What would you like to do?",
     "(Please enter 1 or 2.)"]
