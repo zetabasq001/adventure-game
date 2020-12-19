@@ -7,7 +7,7 @@ def print_pause(messages):
         return
     else:
         print(messages[0])
-        #time.sleep(2)
+        time.sleep(2)
     print_pause(messages[1:])
 
 
