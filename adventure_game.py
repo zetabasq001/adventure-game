@@ -7,7 +7,7 @@ def print_pause(messages):
         return
     else:
         print(messages[0])
-        time.sleep(2)
+        #time.sleep(2)
     print_pause(messages[1:])
 
 
@@ -36,8 +36,11 @@ def ending():
     if response == 'y':
         print_pause(["Excellent! Restarting the game ...\n"])
         play_game()
-    else:
+    elif response == 'n':
         print_pause(["Thanks for playing! See you next time."])
+    else:
+        print_pause(["(Please enter y or n)"])
+        ending()
 
 
 def house(sword, villain):
@@ -54,7 +57,6 @@ def house(sword, villain):
         print_pause(messages)
 
     print_pause(["Would you like to (1) fight or (2) run away?"])
-    valid_response(input() + '2', sword, villain)
 
 
 def cave(sword, villain):
@@ -107,18 +109,27 @@ def fight(sword, villain):
 
 
 def valid_response(number, sword, villain):
-    if number == '1':
-        house(sword, villain)
-    elif number == '2':
-        cave(sword, villain)
-    elif number == '12':
-        fight(sword, villain)
-    elif number == '22':
-        field(sword, villain)
-    else:
+    while number != '1' and number != '2':
         print_pause(["(Please enter 1 or 2.)"])
         print_pause(["What would you like to do?"])
-        valid_response(input(), sword, villain)
+        number = input()
+
+    if number == '1':
+        house(sword, villain)
+        num = input()
+
+        while num != '1' and num != '2':
+            print_pause(["(Please enter 1 or 2.)"])
+            print_pause(["What would you like to do?"])
+            num = input()
+
+        if num == '1':
+            fight(sword, villain)
+        else:
+            field(sword, villain)
+
+    else:
+        cave(sword, villain)
 
 
 def enter_query(sword, villain):
